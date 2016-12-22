@@ -1,6 +1,6 @@
 package general;
 public interface GameBoard {
-	boolean flag();
+	int flag();
 	void run();
 	boolean win();
 	void drawBoard();

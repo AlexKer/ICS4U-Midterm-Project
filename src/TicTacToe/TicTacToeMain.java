@@ -3,7 +3,7 @@ package TicTacToe;
 import general.GameBoard;
 import java.util.Scanner;
 
-public class TicTacToeMain implements GameBoard{
+public class TicTacToeMain {
 
 	public static void main(String[] args) {
 
@@ -20,10 +20,8 @@ public class TicTacToeMain implements GameBoard{
 		//CP.move(x, y);
 		// instructions
 		System.out.println("Welcome to TicTacToe!");
-		System.out
-				.println("Top left corner is 1, 1; bottom right corner is 3, 3.");
-		System.out
-				.println("X goes 1st and O goes 2nd. Do not enter points already in use.");
+		System.out.println("Top left corner is 1, 1; bottom right corner is 3, 3.");
+		System.out.println("X goes 1st and O goes 2nd. Do not enter points already in use.");
 
 		// Print out of the initial state of the board before it begins
 		game.drawBoard(game.getBoard());
@@ -60,28 +58,5 @@ public class TicTacToeMain implements GameBoard{
 		}
 	}
 
-	@Override
-	public boolean flag() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean win() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void drawBoard() {
-		// TODO Auto-generated method stub
-		
-	}
 }
 

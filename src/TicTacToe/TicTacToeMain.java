@@ -51,7 +51,6 @@ public class TicTacToeMain {
 			System.out.println("Full Board. Tie!");
 		}
 		
-		HumanPlayer downcast = (HumanPlayer) player2;
 
 	}
 

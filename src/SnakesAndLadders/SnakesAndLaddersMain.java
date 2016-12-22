@@ -1,4 +1,4 @@
-package SnakeAndLadders;
+package SnakesAndLadders;
 
 import java.util.Scanner;
 

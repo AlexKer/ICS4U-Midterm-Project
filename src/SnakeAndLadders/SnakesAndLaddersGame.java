@@ -21,6 +21,19 @@ public class SnakesAndLaddersGame implements GameBoard{
 			}
 		}
 	}
+	
+	public void displaySnakesAndLaddersLocation(){
+		System.out.print("LADDERS: ");
+		for(int i=0;i<ladders.length;i++){
+			System.out.print("{"+ladders[i][0]+", "+ladders[i][1]+"} ");
+		}
+		System.out.println();
+		System.out.print("SNAKES: ");
+		for(int i=0;i<snakes.length;i++){
+			System.out.print("{"+snakes[i][0]+", "+snakes[i][1]+"} ");
+		}
+		System.out.println();
+	}
 		
 	@Override
 	public void drawBoard() {
@@ -44,7 +57,6 @@ public class SnakesAndLaddersGame implements GameBoard{
 					
 				}
 			System.out.println();
-			System.out.println();
 		}
 	}
  	
@@ -60,22 +72,22 @@ public class SnakesAndLaddersGame implements GameBoard{
 	public void check(){
 		for(int i=0;i<this.ladders.length;i++){
 			if(this.ladders[i][0] == player1Position){
-				player1Position += this.ladders[i][1];
-				System.out.println("ladder");
+				player1Position = this.ladders[i][1];
+				System.out.println("Player 1 hit a ladder. Now on square "+player1Position);
 			}
 			else if(this.ladders[i][0] == player2Position){
-				player2Position += this.ladders[i][1];
-				System.out.println("ladder");
+				player2Position = this.ladders[i][1];
+				System.out.println("Player 2 hit a ladder. Now on square "+player2Position);
 			}
 		}
 		for(int i=0;i<this.snakes.length;i++){
 			if(this.snakes[i][0] == player1Position){
-				player1Position -= this.snakes[i][1];
-				System.out.println("snake");
+				player1Position = this.snakes[i][1];
+				System.out.println("Player 1 hit a snake. Now on square "+player1Position);
 			}
 			else if(this.snakes[i][0] == player2Position){
-				player2Position -= this.snakes[i][1];
-				System.out.println("snake");
+				player2Position = this.snakes[i][1];
+				System.out.println("Player 2 hit a snake. Now on square "+player2Position);
 			}
 		}
 	}
@@ -93,12 +105,20 @@ public class SnakesAndLaddersGame implements GameBoard{
 
 	@Override
 	public boolean win() {
-		return player1Position == 100 || player2Position == 100;
+		return player1Position > 100 || player2Position > 100;
 	}
 
 	@Override
 	public int flag() {
 		return turn++;
+	}
+
+	@Override
+	public int getWinner() {
+		if(player1Position > 100){
+			return 1;
+		}
+		return 2;
 	}
 
 

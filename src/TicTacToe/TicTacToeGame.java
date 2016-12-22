@@ -1,90 +1,88 @@
 package TicTacToe;
 
-public class TicTacToeGame{
+import general.GameBoard;
 
-	private char[][] board = new char[3][3];
-	private int numMoves = 0;
-	private char winner = ' ';
+public class TicTacToeGame implements GameBoard{
 
+	char[][] board = new char[3][3];
+	int numMoves = 0;
+	char winner = ' ';
+	
 	public TicTacToeGame() {
 		clearBoard();
 	}
 	public void clearBoard() {
-		for(int i=0;i<3;i++){
-			for(int j=0;j<3;j++){
-				board[i][j] = '_';
+		for(int row=0;row<3;row++){
+			for(int column=0;column<3;column++){
+				board[row][column] = '_';
 			}
 		}
 	}
-	public void drawBoard(char[][] a) {
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				System.out.print(a[j][i]);
+	public void drawBoard() {
+		System.out.println(" 1 2 3 ");
+		for(int row=0;row<3;row++){
+			System.out.print(row+1);
+			for(int column=0;column<3;column++){
+				System.out.print(board[row][column]+" ");
 			}
 			System.out.println();
 		}
 	}
 	public int getPosition(int[] p) {
-		return board[p[0]][p[1]];
+		return board[p[0]-1][p[1]-1];
 	}
-	public void setPosition(int[] p, char player){
-		if(player == 'X'){
-			board[p[0]][p[1]] = 'X';
+	//if the position is open, return true
+	public boolean checkPosition(int[] p){
+		return p[0] >= 1 && p[0] <= 3 && p[1] >= 1 && p[1] <= 3 && board[p[0]-1][p[1]-1] == '_';
+	}
+	public void setPosition(int[] p, char playerChar){
+		if(playerChar == 'X'){
+			board[p[0]-1][p[1]-1] = 'X';
 		} else {
-			board[p[0]][p[1]] = 'O';
+			board[p[0]-1][p[1]-1] = 'O';
 		}
+		numMoves++;
 	}
 
-	public char[][] getBoard() {
-		return this.board;
-	}
-
-	public char getWinner() {
-		return this.winner;
-	}
-
-	
-
-
-
-	public boolean isWinner() {
-		if (this.numMoves >= 5) {
-			if (this.board[0][0] == 'X' && this.board[0][1] == 'X'
-					&& this.board[0][2] == 'X' || this.board[1][0] == 'X'
-					&& this.board[1][1] == 'X' && this.board[1][2] == 'X'
-					|| this.board[2][0] == 'X' && this.board[2][1] == 'X'
-					&& this.board[2][2] == 'X' || this.board[0][0] == 'X'
-					&& this.board[1][0] == 'X' && this.board[2][0] == 'X'
-					|| this.board[0][1] == 'X' && this.board[1][1] == 'X'
-					&& this.board[2][1] == 'X' || this.board[0][2] == 'X'
-					&& this.board[1][2] == 'X' && this.board[2][2] == 'X'
-					|| this.board[0][0] == 'X' && this.board[1][1] == 'X'
-					&& this.board[2][2] == 'X' || this.board[0][2] == 'X'
-					&& this.board[1][1] == 'X' && this.board[2][0] == 'X') {
-				this.winner = 'X';
+	@Override
+	public boolean win() {
+		if (numMoves >= 5) {
+			if (board[0][0] == 'X' && board[0][1] == 'X'
+					&& board[0][2] == 'X' || board[1][0] == 'X'
+					&& board[1][1] == 'X' && board[1][2] == 'X'
+					|| board[2][0] == 'X' && board[2][1] == 'X'
+					&& board[2][2] == 'X' || board[0][0] == 'X'
+					&& board[1][0] == 'X' && board[2][0] == 'X'
+					|| board[0][1] == 'X' && board[1][1] == 'X'
+					&& board[2][1] == 'X' || board[0][2] == 'X'
+					&& board[1][2] == 'X' && board[2][2] == 'X'
+					|| board[0][0] == 'X' && board[1][1] == 'X'
+					&& board[2][2] == 'X' || board[0][2] == 'X'
+					&& board[1][1] == 'X' && board[2][0] == 'X') {
+				winner = 'X';
 				return true;
-			} else if (this.board[0][0] == 'O' && this.board[0][1] == 'O'
-					&& this.board[0][2] == 'O' || this.board[1][0] == 'O'
-					&& this.board[1][1] == 'O' && this.board[1][2] == 'O'
-					|| this.board[2][0] == 'O' && this.board[2][1] == 'O'
-					&& this.board[2][2] == 'O' || this.board[0][0] == 'O'
-					&& this.board[1][0] == 'O' && this.board[2][0] == 'O'
-					|| this.board[0][1] == 'O' && this.board[1][1] == 'O'
-					&& this.board[2][1] == 'O' || this.board[0][2] == 'O'
-					&& this.board[1][2] == 'O' && this.board[2][2] == 'O'
-					|| this.board[0][0] == 'O' && this.board[1][1] == 'O'
-					&& this.board[2][2] == 'O' || this.board[0][2] == 'O'
-					&& this.board[1][1] == 'O' && this.board[2][0] == 'O') {
-				this.winner = 'O';
+			} else if (board[0][0] == 'O' && board[0][1] == 'O'
+					&& board[0][2] == 'O' || board[1][0] == 'O'
+					&& board[1][1] == 'O' && board[1][2] == 'O'
+					|| board[2][0] == 'O' && board[2][1] == 'O'
+					&& board[2][2] == 'O' || board[0][0] == 'O'
+					&& board[1][0] == 'O' && board[2][0] == 'O'
+					|| board[0][1] == 'O' && board[1][1] == 'O'
+					&& board[2][1] == 'O' || board[0][2] == 'O'
+					&& board[1][2] == 'O' && board[2][2] == 'O'
+					|| board[0][0] == 'O' && board[1][1] == 'O'
+					&& board[2][2] == 'O' || board[0][2] == 'O'
+					&& board[1][1] == 'O' && board[2][0] == 'O') {
+				winner = 'O';
 				return true;
 			}
+			return false;
 		}
 		return false;
 	}
 
-	// check if all the spots on the board is occupied
 	public boolean isFull() {
-		return this.numMoves == 9;
+		return numMoves == 9;
 	}
 
 

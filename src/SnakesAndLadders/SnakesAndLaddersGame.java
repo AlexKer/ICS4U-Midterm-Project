@@ -1,4 +1,4 @@
-package SnakeAndLadders;
+package SnakesAndLadders;
 
 import general.GameBoard;
 
@@ -97,23 +97,13 @@ public class SnakesAndLaddersGame implements GameBoard{
 		return (int)(Math.random()* 6 + 1);
  	}
  	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public boolean win() {
 		return player1Position > 100 || player2Position > 100;
 	}
 
-	@Override
-	public int flag() {
-		return turn++;
-	}
 
-	@Override
 	public int getWinner() {
 		if(player1Position > 100){
 			return 1;

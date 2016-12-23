@@ -11,7 +11,9 @@ public class HumanPlayer extends Player{
 		this.playerChar = c;
 	}
 
-	//passing by reference
+	//pass in game object, prompt for coordinates for the next move
+	//loop until the user enters a valid point, then change that element in the array to the approriate gamepiece
+	//draw board to reflect changes
 	@Override
 	public void play(TicTacToeGame game) {
 		do{
@@ -26,6 +28,6 @@ public class HumanPlayer extends Player{
 		game.setPosition(this.p, this.playerChar);
 		game.drawBoard();
 	}
-	
+
 
 }
